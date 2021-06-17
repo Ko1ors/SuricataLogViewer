@@ -1,22 +1,49 @@
-﻿using SuricataLogViewer.Model;
-using Newtonsoft.Json;
-using System;
+﻿using Newtonsoft.Json;
+using SuricataLogViewer.Model;
+using SuricataLogViewer.Properties;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SuricataLogViewer.Services
 {
     public class SuricataService
     {
+        private static List<SuricataEvent> log;
+
+        public List<SuricataEvent> GetLog()
+        {
+            try
+            {
+                if (log != null)
+                    return log;
+                return LoadLog(Resources.SuricataSampleLogUrl);
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         public List<SuricataEvent> GetLog(string url)
         {
             try
             {
+                if (log != null)
+                    return log;
+                return LoadLog(url);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<SuricataEvent> LoadLog(string url)
+        {
+            try
+            {
                 var result = Request.Send(url);
-                return JsonConvert.DeserializeObject<List<SuricataEvent>>(result);
+                log = JsonConvert.DeserializeObject<List<SuricataEvent>>(result);
+                return log;
             }
             catch
             {
