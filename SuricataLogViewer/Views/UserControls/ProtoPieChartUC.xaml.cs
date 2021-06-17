@@ -9,16 +9,15 @@ using System.Windows.Media;
 namespace SuricataLogViewer.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for AppProtoPieChartUC.xaml
+    /// Interaction logic for ProtoPieChartUC.xaml
     /// </summary>
-    public partial class AppProtoPieChartUC : UserControl
+    public partial class ProtoPieChartUC : UserControl
     {
-        public AppProtoPieChartUC()
+        public ProtoPieChartUC()
         {
             InitializeComponent();
-
             var log = SuricataService.GetLog();
-            var logGrouped = log.GroupBy(e => e.AppProto).ToList();
+            var logGrouped = log.GroupBy(e => e.Proto).ToList();
 
             SeriesCollection = new SeriesCollection();
 
@@ -31,7 +30,7 @@ namespace SuricataLogViewer.Views.UserControls
                     DataLabels = true,
                     LabelPoint = chartPoint => $"{chartPoint.Y} ({Math.Round(chartPoint.Participation * 100)}%)",
                     Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#E4E3E3")
-            });
+                });
             }
 
             DataContext = this;

@@ -9,7 +9,7 @@ namespace SuricataLogViewer.Services
     {
         private static List<SuricataEvent> log;
 
-        public List<SuricataEvent> GetLog()
+        public static List<SuricataEvent> GetLog()
         {
             try
             {
@@ -23,7 +23,7 @@ namespace SuricataLogViewer.Services
             }
         }
 
-        public List<SuricataEvent> GetLog(string url)
+        public static List<SuricataEvent> GetLog(string url)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace SuricataLogViewer.Services
             }
         }
 
-        public List<SuricataEvent> LoadLog(string url)
+        public static List<SuricataEvent> LoadLog(string url)
         {
             try
             {

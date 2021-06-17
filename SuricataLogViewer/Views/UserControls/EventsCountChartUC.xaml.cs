@@ -17,7 +17,7 @@ namespace SuricataLogViewer.Views.UserControls
         {
             InitializeComponent();
 
-            var log = new SuricataService().GetLog();
+            var log = SuricataService.GetLog();
 
             var lTime = log.Min(e => e.Timestamp);
             var rTime = log.Max(e => e.Timestamp);

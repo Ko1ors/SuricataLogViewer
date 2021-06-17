@@ -22,5 +22,6 @@
         <usercontrols:EventsCountChartUC Grid.ColumnSpan="3"/>
 
         <usercontrols:AppProtoPieChartUC Grid.Row="1"/>
+        <usercontrols:ProtoPieChartUC Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </Page>
