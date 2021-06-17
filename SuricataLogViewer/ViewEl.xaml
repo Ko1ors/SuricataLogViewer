@@ -5,6 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SuricataLogViewer"
         mc:Ignorable="d"
-        Title="Information about element" Height="450" Width="800">
+        Title="Information about element" WindowStyle="None" Height="450" Width="800" Background="#3B6978">
     <Grid x:Name="notes"></Grid>
+    <Window.Resources>
+       
+    </Window.Resources>
 </Window>
+
