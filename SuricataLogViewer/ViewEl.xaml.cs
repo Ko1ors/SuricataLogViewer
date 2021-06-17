@@ -2,6 +2,7 @@
 using SuricataLogViewer.Services;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SuricataLogViewer
 {
@@ -33,6 +34,8 @@ namespace SuricataLogViewer
             txtBlock.Height = notes.Height;
             txtBlock.Width = notes.Width;
             txtBlock.FontSize = 14;
+            txtBlock.Foreground = Brushes.White;
+            txtBlock.FontWeight = FontWeights.Bold;
             txtBlock.Text = element.outputEl(0);
             notes.Children.Add(txtBlock);
         }
