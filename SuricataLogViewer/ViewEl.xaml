@@ -6,9 +6,17 @@
         xmlns:local="clr-namespace:SuricataLogViewer"
         mc:Ignorable="d"
         Title="Information about element" WindowStyle="None" Height="450" Width="800" Background="#3B6978">
-    <Grid x:Name="notes"></Grid>
+    <Grid x:Name="notes">
+        <DockPanel  Margin="0,0,0,419" Background="#FF204051">
+        <TextBlock VerticalAlignment="Center" Text="Information about element" Foreground="#E4E3E3" Margin="5" FontFamily="Arial" FontSize="18"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+            <Button Content="🗕" VerticalContentAlignment="Top" Width="30" Height="30" Click="MinimizeButton_Click" Background="{x:Null}"  WindowChrome.IsHitTestVisibleInChrome="True" FontWeight="Bold" Foreground="#E4E3E3" BorderBrush="{x:Null}" />
+            <Button Content="✕" Width="30" Height="30" Click="ExitButton_Click" Background="{x:Null}"  WindowChrome.IsHitTestVisibleInChrome="True" Foreground="#E4E3E3" FontWeight="Bold" FontFamily="Arial" BorderBrush="{x:Null}" />
+        </StackPanel>
+        </DockPanel>
+    </Grid>
     <Window.Resources>
-       
+
     </Window.Resources>
 </Window>
 
