@@ -31,7 +31,7 @@ namespace SuricataLogViewer.Views.UserControls
 
             for (var i = lTime; i <= rTime - t; i += t)
             {
-                Labels.Add(i.ToString());
+                Labels.Add(i.ToString("dd.MM.yy H:m"));
                 Values.Add(log.Where(e => e.Timestamp >= i && e.Timestamp <= i + t).Count());
             }
 

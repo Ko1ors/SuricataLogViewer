@@ -13,6 +13,6 @@
             <RowDefinition Height="35*"/>
             <RowDefinition Height="65*"/>
         </Grid.RowDefinitions>
-        <usercontrols:EventsCountChartUC Margin="10"/>
+        <usercontrols:EventsCountChartUC Margin="10,10,5,10"/>
     </Grid>
 </Page>
