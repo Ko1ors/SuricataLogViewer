@@ -51,5 +51,11 @@ namespace SuricataLogViewer
         {
             PageFrame.Content = PageService.GetPageObject<Page>();
         }
+
+        private void Button_Info(object sender, RoutedEventArgs e)
+        {
+            ViewEl elementWindow = new ViewEl();
+            elementWindow.Show();
+        }
     }
 }
