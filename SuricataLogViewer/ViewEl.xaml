@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SuricataLogViewer" xmlns:local1="clr-namespace:SuricataLogViewer.Models" d:DataContext="{d:DesignInstance Type=local1:SideBarElement}"
         mc:Ignorable="d"
-        Title="Information about element" WindowStyle="None" Height="500" Width="355" >
+        Title="Information about element" WindowStyle="None" Height="500" Width="350">
 <shell:WindowChrome.WindowChrome>
     <shell:WindowChrome 
             ResizeBorderThickness="5"
