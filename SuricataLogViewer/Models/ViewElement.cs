@@ -24,20 +24,20 @@ namespace SuricataLogViewer.Models
             result += "Destiny ip: " + surEvent.DestIp.ToString() + "\n";
             result += "Destiny port: " + surEvent.DestPort.ToString() + "\n";
             result += "Protocol: " + surEvent.Proto.ToString() + "\n";
-            result += "Alert: [";
-            result += "action: " + surEvent.Alert.Action.ToString() + ", ";
-            result += "gid: " + surEvent.Alert.Gid.ToString() + ", ";
-            result += "signature id: " + surEvent.Alert.SignatureId.ToString() + ", ";
-            result += "rev: " + surEvent.Alert.Rev.ToString() + ", ";
-            result += "signature: " + surEvent.Alert.Signature.ToString() + ", ";
-            result += "category: " + surEvent.Alert.Category.ToString() + ", ";
-            result += "severity: " + surEvent.Alert.Severity.ToString() + "]\n";
-            result += "Flow: [";
-            result += "packets to server: " + surEvent.Flow.PktsToserver.ToString() + ", ";
-            result += "packets to client: " + surEvent.Flow.PktsToclient.ToString() + ", ";
-            result += "bytes to server: " + surEvent.Flow.BytesToserver.ToString() + ", ";
-            result += "bytes to client: " + surEvent.Flow.BytesToclient.ToString() + ", ";
-            result += "start: " + surEvent.Flow.Start.ToString() + "]";
+            result += "Alert:\n";
+            result += "\tAction: " + surEvent.Alert.Action.ToString() + "\n";
+            result += "\tGid: " + surEvent.Alert.Gid.ToString() + "\n";
+            result += "\tSignature id: " + surEvent.Alert.SignatureId.ToString() + "\n";
+            result += "\tRev: " + surEvent.Alert.Rev.ToString() + ", ";
+            result += "\tSignature: " + surEvent.Alert.Signature.ToString() + "\n";
+            result += "\tCategory: " + surEvent.Alert.Category.ToString() + "\n";
+            result += "\tSeverity: " + surEvent.Alert.Severity.ToString() + "]\n";
+            result += "Flow:\n";
+            result += "\tPackets to server: " + surEvent.Flow.PktsToserver.ToString() + "\n";
+            result += "\tPackets to client: " + surEvent.Flow.PktsToclient.ToString() + "\n";
+            result += "\tBytes to server: " + surEvent.Flow.BytesToserver.ToString() + "\n";
+            result += "\tBytes to client: " + surEvent.Flow.BytesToclient.ToString() + "\n";
+            result += "\tStart: " + surEvent.Flow.Start.ToString() + "]";
             return result;
         }  
     }
