@@ -1,9 +1,11 @@
 ﻿using SuricataLogViewer.Models;
 using SuricataLogViewer.Services;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace SuricataLogViewer
 {
@@ -29,7 +31,14 @@ namespace SuricataLogViewer
             WindowState = WindowState.Minimized;
         }
 
-        
+        private void Hyperlink_RequestNavigate(object sender, RoutedEventArgs e)
+        {
+
+            Process.Start("explorer.exe", "https://suricata.readthedocs.io/en/latest/output/index.html"); //открытие ссылки в браузере
+
+
+        }
+
         private void CreateATextBlock()
         {
             TextBlock txtBlock = new TextBlock();
@@ -38,8 +47,8 @@ namespace SuricataLogViewer
             txtBlock.Width = notes.Width;
             txtBlock2.Height = notes.Height;
             txtBlock2.Width = notes.Width;
-            txtBlock.FontSize = txtBlock2.FontSize= 14;
-            
+            txtBlock.FontSize = txtBlock2.FontSize = 14;
+
             txtBlock.Padding = new Thickness(10, 0, 0, 0);
             txtBlock2.Padding = new Thickness(190, 0, 0, 0);
             txtBlock.Foreground = Brushes.White;
