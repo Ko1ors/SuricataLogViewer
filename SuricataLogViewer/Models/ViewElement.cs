@@ -114,10 +114,10 @@ namespace SuricataLogViewer.Models
             if (surEvent.Email != null)
             {
                 result += "Email:\n";
-                result += "   Status: \n\n\n";
+                result += "   Status: \n";
             }
 
-            
+            result += "\n";
 
             return result;
         }
