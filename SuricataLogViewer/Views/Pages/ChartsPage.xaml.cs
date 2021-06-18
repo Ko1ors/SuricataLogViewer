@@ -24,7 +24,6 @@ namespace SuricataLogViewer.Views.Pages
         public ChartsPage()
         {
             InitializeComponent();
-            Task.Run(() => IpService.GetIpInfo(SuricataService.GetLog()));
         }
     }
 }
