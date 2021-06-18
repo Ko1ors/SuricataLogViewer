@@ -34,7 +34,6 @@ namespace SuricataLogViewer
         {
             TextBlock txtBlock = new TextBlock();
             TextBlock txtBlock2 = new TextBlock();
-            TextBlock txtBlock3 = new TextBlock();
             txtBlock.Height = notes.Height;
             txtBlock.Width = notes.Width;
             txtBlock2.Height = notes.Height;
@@ -42,13 +41,13 @@ namespace SuricataLogViewer
             txtBlock.FontSize = 14;
             txtBlock2.FontSize = 14;
             txtBlock.Padding = new Thickness(10, 0, 0, 0);
-            txtBlock2.Padding = new Thickness(100, 0, 0, 0);
+            txtBlock2.Padding = new Thickness(130, 0, 0, 0);
             txtBlock.Foreground = Brushes.White;
             txtBlock2.Foreground = Brushes.Yellow;
             txtBlock.FontWeight = FontWeights.Bold;
             txtBlock2.FontWeight = FontWeights.Bold;
-            txtBlock.Text = element.outputEl1(7);
-            txtBlock2.Text = element.outputEl2(7);
+            txtBlock.Text = element.outputEl1(20);
+            txtBlock2.Text = element.outputEl2(20);
             notes.Children.Add(txtBlock);
             notes.Children.Add(txtBlock2);
         }
