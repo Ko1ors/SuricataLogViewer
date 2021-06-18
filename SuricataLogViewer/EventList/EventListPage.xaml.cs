@@ -26,7 +26,7 @@ namespace SuricataLogViewer.EventList
         private void ButtonShowAll_Click(object sender, RoutedEventArgs e)
         {
             events = suricataService.GetLog("https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json");
-            fillEventListView(events);
+            fillEventListView(events.OrderByDescending(u=>u.Timestamp).ToList());
         }
 
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)

@@ -13,7 +13,7 @@
         <GroupBox Padding="8 5 3 0" Margin="0 0 0 0" Background="#E4E3E3" BorderThickness="0" >
             <GroupBox.Header>
                 <Border Background="#E4E3E3" CornerRadius="10" Padding="5">
-                        <TextBlock Text="{Binding Timestamp, FallbackValue=Timestamp}" FontFamily="Arial Black" FontSize="11" Foreground="#8862E8" VerticalAlignment="Bottom"/>
+                    <TextBlock Text="{Binding Timestamp, StringFormat='{}{0: yyyy-MM-dd HH:mm:ss }', FallbackValue=Timestamp}" FontFamily="Arial Black" FontSize="11" Foreground="#8862E8" VerticalAlignment="Bottom"/>
                     </Border>
                 </GroupBox.Header>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
