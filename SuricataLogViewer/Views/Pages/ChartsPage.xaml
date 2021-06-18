@@ -23,5 +23,6 @@
 
         <usercontrols:AppProtoPieChartUC Grid.Row="1"/>
         <usercontrols:ProtoPieChartUC Grid.Row="1" Grid.Column="1"/>
+        <usercontrols:EventPieChartUC Grid.Row="1" Grid.Column="2"/>
     </Grid>
 </Page>

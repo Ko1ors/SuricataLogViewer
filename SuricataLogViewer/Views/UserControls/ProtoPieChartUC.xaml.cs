@@ -1,6 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
 using SuricataLogViewer.Services;
+using SuricataLogViewer.ViewModels;
 using System;
 using System.Linq;
 using System.Windows.Controls;
@@ -16,24 +17,8 @@ namespace SuricataLogViewer.Views.UserControls
         public ProtoPieChartUC()
         {
             InitializeComponent();
-            var log = SuricataService.GetLog();
-            var logGrouped = log.GroupBy(e => e.Proto).ToList();
 
-            SeriesCollection = new SeriesCollection();
-
-            foreach (var group in logGrouped)
-            {
-                SeriesCollection.Add(new PieSeries
-                {
-                    Title = group.Key,
-                    Values = new ChartValues<int> { group.Count() },
-                    DataLabels = true,
-                    LabelPoint = chartPoint => $"{chartPoint.Y} ({Math.Round(chartPoint.Participation * 100)}%)",
-                    Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#E4E3E3")
-                });
-            }
-
-            DataContext = this;
+            DataContext = new PieChartViewModel(Models.PieChartType.Protocol);
         }
 
         private void Chart_OnDataClick(object sender, ChartPoint chartpoint)
@@ -46,7 +31,5 @@ namespace SuricataLogViewer.Views.UserControls
             var selectedSeries = (PieSeries)chartpoint.SeriesView;
             selectedSeries.PushOut = 8;
         }
-
-        public SeriesCollection SeriesCollection { get; set; }
     }
 }

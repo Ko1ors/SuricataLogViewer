@@ -1,24 +1,20 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
-using SuricataLogViewer.Services;
 using SuricataLogViewer.ViewModels;
-using System;
-using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace SuricataLogViewer.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for AppProtoPieChartUC.xaml
+    /// Interaction logic for EventPieChartUC.xaml
     /// </summary>
-    public partial class AppProtoPieChartUC : UserControl
+    public partial class EventPieChartUC : UserControl
     {
-        public AppProtoPieChartUC()
+        public EventPieChartUC()
         {
             InitializeComponent();
 
-            DataContext = new PieChartViewModel(Models.PieChartType.ApplicationProtocol);
+            DataContext = new PieChartViewModel(Models.PieChartType.Event);
         }
 
         private void Chart_OnDataClick(object sender, ChartPoint chartpoint)
