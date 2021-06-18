@@ -5,37 +5,41 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SuricataLogViewer.EventList"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="600">
+             d:DesignHeight="45" d:DesignWidth="800" Cursor="Hand">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="800"/>
         </Grid.ColumnDefinitions>
-        <GroupBox Padding="10 0 0 0" Background="#1a508b" BorderThickness="0">
+        <GroupBox Padding="8 5 3 0" Margin="0 0 0 0" Background="#E4E3E3" BorderThickness="0" >
             <GroupBox.Header>
-                <Border Background="#1a508b" CornerRadius="10" Padding="5">
-                    <TextBlock Text="{Binding Timestamp, FallbackValue=Timestamp}" FontFamily="Arial Black" FontSize="14" Foreground="DarkOrange"/>
-                </Border>
-            </GroupBox.Header>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBlock FontFamily="Arial Black" FontSize="13" Foreground="DarkOrange" Text="EventType"/>
-                <TextBlock Text=": " FontFamily="Arial Black" FontSize="12" Foreground="White"/>
-                <TextBlock Text="{Binding EventType, FallbackValue=null}" FontFamily="Arial Black" FontSize="13" Foreground="White"/>
+                <Border Background="#E4E3E3" CornerRadius="10" Padding="5">
+                        <TextBlock Text="{Binding Timestamp, FallbackValue=Timestamp}" FontFamily="Arial Black" FontSize="11" Foreground="#8862E8" VerticalAlignment="Bottom"/>
+                    </Border>
+                </GroupBox.Header>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="FlowId" VerticalAlignment="Bottom"/>
+                <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding FlowId, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
 
-                <TextBlock FontFamily="Arial Black" FontSize="13" Foreground="DarkOrange" Text=" SrcIp"/>
-                <TextBlock Text=": " FontFamily="Arial Black" FontSize="12" Foreground="White"/>
-                <TextBlock Text="{Binding SrcIp, FallbackValue=null}" FontFamily="Arial Black" FontSize="13" Foreground="White"/>
+                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  EventType" VerticalAlignment="Bottom"/>
+                <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding EventType, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
 
-                <TextBlock FontFamily="Arial Black" FontSize="13" Foreground="DarkOrange" Text=" DestIp"/>
-                <TextBlock Text=": " FontFamily="Arial Black" FontSize="12" Foreground="White"/>
-                <TextBlock Text="{Binding DestIp, FallbackValue=null}" FontFamily="Arial Black" FontSize="13" Foreground="White"/>
+                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  SrcIp" VerticalAlignment="Bottom"/>
+                <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding SrcIp, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
 
-                <TextBlock FontFamily="Arial Black" FontSize="13" Foreground="DarkOrange" Text=" Proto"/>
-                <TextBlock Text=": " FontFamily="Arial Black" FontSize="12" Foreground="White"/>
-                <TextBlock Text="{Binding Proto, FallbackValue=null}" FontFamily="Arial Black" FontSize="13" Foreground="White"/>
+                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  DestIp" VerticalAlignment="Bottom"/>
+                <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding DestIp, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
 
-                <TextBlock FontFamily="Arial Black" FontSize="13" Foreground="DarkOrange" Text=" AppProto"/>
-                <TextBlock Text=": " FontFamily="Arial Black" FontSize="12" Foreground="White"/>
-                <TextBlock Text="{Binding AppProto, FallbackValue=null}" FontFamily="Arial Black" FontSize="13" Foreground="White"/>
+                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  Proto" VerticalAlignment="Bottom"/>
+                <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding Proto, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
+
+                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  AppProto" VerticalAlignment="Bottom"/>
+                <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding AppProto, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
             </StackPanel>
         </GroupBox>
     </Grid>
