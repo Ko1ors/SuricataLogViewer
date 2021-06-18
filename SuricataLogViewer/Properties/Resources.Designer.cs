@@ -61,6 +61,15 @@ namespace SuricataLogViewer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ipinfo.json.
+        /// </summary>
+        internal static string IpInfoFilePath {
+            get {
+                return ResourceManager.GetString("IpInfoFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json.
         /// </summary>
         internal static string SuricataSampleLogUrl {

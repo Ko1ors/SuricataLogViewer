@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="IpInfoFilePath" xml:space="preserve">
+    <value>ipinfo.json</value>
+  </data>
   <data name="SuricataSampleLogUrl" xml:space="preserve">
     <value>https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json</value>
   </data>

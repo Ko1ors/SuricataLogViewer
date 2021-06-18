@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuricataLogViewer.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace SuricataLogViewer.Views.Pages
         public ChartsPage()
         {
             InitializeComponent();
+            Task.Run(() => IpService.GetIpInfo(SuricataService.GetLog()));
         }
     }
 }
