@@ -12,33 +12,65 @@ namespace SuricataLogViewer.Models
     {
         List<SuricataEvent> surList = new SuricataService().GetLog("https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json");
 
-        public String outputEl(int index)
+        public String outputEl1(int index)
         {
             SuricataEvent surEvent = surList[index];
-            String result = "  Time: " + surEvent.Timestamp.ToString() + "\n";
-            result += "  Flow id: " + surEvent.FlowId.ToString() + "\n";
-            result += "  Pcap count: " + surEvent.PcapCnt.ToString() + "\n";
-            result += "  Event type: " + surEvent.EventType.ToString() + "\n";
-            result += "  Source ip: " + surEvent.SrcIp.ToString() + "\n";
-            result += "  Source port: " + surEvent.SrcPort.ToString() + "\n";
-            result += "  Destiny ip: " + surEvent.DestIp.ToString() + "\n";
-            result += "  Destiny port: " + surEvent.DestPort.ToString() + "\n";
-            result += "  Protocol: " + surEvent.Proto.ToString() + "\n";
-            result += "  Alert:\n";
-            result += "\tAction: " + surEvent.Alert.Action.ToString() + "\n";
-            result += "\tGid: " + surEvent.Alert.Gid.ToString() + "\n";
-            result += "\tSignature id: " + surEvent.Alert.SignatureId.ToString() + "\n";
-            result += "\tRev: " + surEvent.Alert.Rev.ToString() + "\n";
-            result += "\tSignature: " + surEvent.Alert.Signature.ToString() + "\n";
-            result += "\tCategory: " + surEvent.Alert.Category.ToString() + "\n";
-            result += "\tSeverity: " + surEvent.Alert.Severity.ToString() + "\n";
-            result += "  Flow:\n";
-            result += "\tPackets to server: " + surEvent.Flow.PktsToserver.ToString() + "\n";
-            result += "\tPackets to client: " + surEvent.Flow.PktsToclient.ToString() + "\n";
-            result += "\tBytes to server: " + surEvent.Flow.BytesToserver.ToString() + "\n";
-            result += "\tBytes to client: " + surEvent.Flow.BytesToclient.ToString() + "\n";
-            result += "\tStart: " + surEvent.Flow.Start.ToString() + "";
+            String result = "Time: \n";
+            result += "Flow id: \n";
+            result += "Pcap count: \n";
+            result += "Event type: \n";
+            result += "Source ip: \n";
+            result += "Source port: \n";
+            result += "Destiny ip: \n";
+            result += "Destiny port: \n";
+            result += "Protocol: \n";
+            result += "Alert:\n";
+            result += "   Action: \n";
+            result += "   Gid: \n";
+            result += "   Signature id: \n";
+            result += "   Rev: \n";
+            result += "   Signature: \n";
+            result += "   Category: \n";
+            result += "   Severity: \n";
+            result += "Flow:\n";
+            result += "   Packets to server: \n";
+            result += "   Packets to client: \n";
+            result += "   Bytes to server: \n";
+            result += "   Bytes to client: \n";
+            result += "   Start: \n";
+            result += "App proto: \n";
             return result;
-        }  
+        }
+
+        public String outputEl2(int index)
+        {
+            SuricataEvent surEvent = surList[index];
+            String result = surEvent.Timestamp.ToString() + "\n";
+            result += surEvent.FlowId.ToString() + "\n";
+            result += surEvent.PcapCnt.ToString() + "\n";
+            result += surEvent.EventType.ToString() + "\n";
+            result += surEvent.SrcIp.ToString() + "\n";
+            result += surEvent.SrcPort.ToString() + "\n";
+            result += surEvent.DestIp.ToString() + "\n";
+            result += surEvent.DestPort.ToString() + "\n";
+            result += surEvent.Proto.ToString() + "\n";
+            result += "\n";
+            result += surEvent.Alert.Action.ToString() + "\n";
+            result += surEvent.Alert.Gid.ToString() + "\n";
+            result += surEvent.Alert.SignatureId.ToString() + "\n";
+            result += surEvent.Alert.Rev.ToString() + "\n";
+            result += surEvent.Alert.Signature.ToString() + "\n";
+            result += surEvent.Alert.Category.ToString() + "\n";
+            result += surEvent.Alert.Severity.ToString() + "\n";
+            result += "\n";
+            result += surEvent.Flow.PktsToserver.ToString() + "\n";
+            result += surEvent.Flow.PktsToclient.ToString() + "\n";
+            result += surEvent.Flow.BytesToserver.ToString() + "\n";
+            result += surEvent.Flow.BytesToclient.ToString() + "\n";
+            result += surEvent.Flow.Start.ToString() + "\n";
+            result += surEvent.AppProto ?? "empty";
+            result += "\n";
+            return result;
+        }
     }
 }
