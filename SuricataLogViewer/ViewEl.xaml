@@ -6,8 +6,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SuricataLogViewer" xmlns:local1="clr-namespace:SuricataLogViewer.Models" d:DataContext="{d:DesignInstance Type=local1:SideBarElement}"
         mc:Ignorable="d"
-        Title="Information about element" WindowStyle="None" Height="500" Width="350">
-<shell:WindowChrome.WindowChrome>
+
+        Title="Information about element" WindowStyle="None" Height="500" Width="355" >
+    <shell:WindowChrome.WindowChrome>
     <shell:WindowChrome 
             ResizeBorderThickness="5"
             CaptionHeight="20"
@@ -32,10 +33,17 @@
         </StackPanel>
         </DockPanel>
             
-            <Border Grid.Row="1" BorderThickness="0,0,2,2" BorderBrush="{StaticResource WindowsBrush1}" Background="{StaticResource BackgroundBrush}" shell:Grid.RowSpan="2">
-            <Grid x:Name="notes">
+            <Border Grid.Row="1" BorderThickness="0,0,2,2" BorderBrush="{StaticResource WindowsBrush1}" Background="{StaticResource BackgroundBrush}" shell:Grid.RowSpan="2" >
+              <ScrollViewer>
+                <TextBlock>
+                  <Grid x:Name="notes" >
                    
                    </Grid>
+                </TextBlock> 
+                  
+              </ScrollViewer>
+              
+              
             </Border>
     </Grid>
    

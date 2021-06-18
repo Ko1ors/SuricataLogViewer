@@ -2,6 +2,7 @@
 using SuricataLogViewer.Services;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
 namespace SuricataLogViewer
@@ -28,6 +29,7 @@ namespace SuricataLogViewer
             WindowState = WindowState.Minimized;
         }
 
+        
         private void CreateATextBlock()
         {
             TextBlock txtBlock = new TextBlock();
