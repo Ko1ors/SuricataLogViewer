@@ -15,23 +15,6 @@ namespace SuricataLogViewer.Models
         public String outputEl1(int index)
         {
             SuricataEvent surEvent = surList[index];
-            foreach(SuricataEvent surevent in surList)
-            {
-                if(surevent.Smtp != null && surevent.Smtp.RcptTo != null)
-                {
-                    string hello = "[";
-                    for (int i = 0; i < surevent.Smtp.RcptTo.Count; i++)
-                    {
-                        if(i != surevent.Smtp.RcptTo.Count - 1)
-                            hello += surevent.Smtp.RcptTo[i] + ", ";
-                        else
-                        {
-                            hello += surevent.Smtp.RcptTo[i];
-                        }
-                    }
-                    hello += "]";
-                }
-            }
             String result = "Time: \n";
             result += "Flow id: \n";
             result += "Pcap count: \n";
