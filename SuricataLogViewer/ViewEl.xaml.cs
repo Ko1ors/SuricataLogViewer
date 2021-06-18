@@ -41,7 +41,7 @@ namespace SuricataLogViewer
             txtBlock.FontSize = 14;
             txtBlock2.FontSize = 14;
             txtBlock.Padding = new Thickness(10, 0, 0, 0);
-            txtBlock2.Padding = new Thickness(130, 0, 0, 0);
+            txtBlock2.Padding = new Thickness(180, 0, 0, 0);
             txtBlock.Foreground = Brushes.White;
             txtBlock2.Foreground = Brushes.Yellow;
             txtBlock.FontWeight = FontWeights.Bold;

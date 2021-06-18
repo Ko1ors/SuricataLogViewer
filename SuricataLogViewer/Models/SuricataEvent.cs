@@ -13,13 +13,13 @@ namespace SuricataLogViewer.Model
             public string Action { get; set; }
 
             [JsonProperty("gid")]
-            public int Gid { get; set; }
+            public int? Gid { get; set; }
 
             [JsonProperty("signature_id")]
-            public int SignatureId { get; set; }
+            public int? SignatureId { get; set; }
 
             [JsonProperty("rev")]
-            public int Rev { get; set; }
+            public int? Rev { get; set; }
 
             [JsonProperty("signature")]
             public string Signature { get; set; }
@@ -28,31 +28,31 @@ namespace SuricataLogViewer.Model
             public string Category { get; set; }
 
             [JsonProperty("severity")]
-            public int Severity { get; set; }
+            public int? Severity { get; set; }
         }
 
         public class Flow
         {
             [JsonProperty("pkts_toserver")]
-            public int PktsToserver { get; set; }
+            public int? PktsToserver { get; set; }
 
             [JsonProperty("pkts_toclient")]
-            public int PktsToclient { get; set; }
+            public int? PktsToclient { get; set; }
 
             [JsonProperty("bytes_toserver")]
-            public int BytesToserver { get; set; }
+            public int? BytesToserver { get; set; }
 
             [JsonProperty("bytes_toclient")]
-            public int BytesToclient { get; set; }
+            public int? BytesToclient { get; set; }
 
             [JsonProperty("start")]
-            public DateTime Start { get; set; }
+            public DateTime? Start { get; set; }
         }
 
         public class Flowbits
         {
             [JsonProperty("is_proto_irc")]
-            public bool IsProtoIrc { get; set; }
+            public bool? IsProtoIrc { get; set; }
 
             [JsonProperty("exe.no.referer")]
             public bool? ExeNoReferer { get; set; }
@@ -97,7 +97,7 @@ namespace SuricataLogViewer.Model
         public class Flowints
         {
             [JsonProperty("tls.anomaly.count")]
-            public int TlsAnomalyCount { get; set; }
+            public int? TlsAnomalyCount { get; set; }
 
             [JsonProperty("smtp.anomaly.count")]
             public int? SmtpAnomalyCount { get; set; }
@@ -136,10 +136,10 @@ namespace SuricataLogViewer.Model
             public string Protocol { get; set; }
 
             [JsonProperty("status")]
-            public int Status { get; set; }
+            public int? Status { get; set; }
 
             [JsonProperty("length")]
-            public int Length { get; set; }
+            public int? Length { get; set; }
 
             [JsonProperty("redirect")]
             public string Redirect { get; set; }
@@ -166,10 +166,10 @@ namespace SuricataLogViewer.Model
             public string Version { get; set; }
 
             [JsonProperty("notbefore")]
-            public DateTime Notbefore { get; set; }
+            public DateTime? Notbefore { get; set; }
 
             [JsonProperty("notafter")]
-            public DateTime Notafter { get; set; }
+            public DateTime? Notafter { get; set; }
 
             [JsonProperty("sni")]
             public string Sni { get; set; }
@@ -196,13 +196,13 @@ namespace SuricataLogViewer.Model
         public class SuricataEvent
         {
             [JsonProperty("timestamp")]
-            public DateTime Timestamp { get; set; }
+            public DateTime? Timestamp { get; set; }
 
             [JsonProperty("flow_id")]
             public object FlowId { get; set; }
 
             [JsonProperty("pcap_cnt")]
-            public int PcapCnt { get; set; }
+            public int? PcapCnt { get; set; }
 
             [JsonProperty("event_type")]
             public string EventType { get; set; }
@@ -211,13 +211,13 @@ namespace SuricataLogViewer.Model
             public string SrcIp { get; set; }
 
             [JsonProperty("src_port")]
-            public int SrcPort { get; set; }
+            public int? SrcPort { get; set; }
 
             [JsonProperty("dest_ip")]
             public string DestIp { get; set; }
 
             [JsonProperty("dest_port")]
-            public int DestPort { get; set; }
+            public int? DestPort { get; set; }
 
             [JsonProperty("proto")]
             public string Proto { get; set; }
