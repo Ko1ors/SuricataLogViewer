@@ -29,9 +29,9 @@
 
             <usercontrols:EventsCountChartUC Grid.ColumnSpan="3" MinHeight="150"/>
 
-            <usercontrols:AppProtoPieChartUC Grid.Row="2" MinHeight="250"/>
-            <usercontrols:ProtoPieChartUC Grid.Row="2" Grid.Column="1" MinHeight="250"/>
-            <usercontrols:EventPieChartUC Grid.Row="2" Grid.Column="2" MinHeight="250"/>
+            <usercontrols:AppProtoPieChartUC Grid.Row="2" Margin="15" MinHeight="350"/>
+            <usercontrols:ProtoPieChartUC Grid.Row="2" Grid.Column="1" Margin="15" MinHeight="350"/>
+            <usercontrols:EventPieChartUC Grid.Row="2" Grid.Column="2" Margin="15" MinHeight="350"/>
             <Viewbox Grid.Row="4" Grid.ColumnSpan="3" StretchDirection="Both" Stretch="Uniform">
                 <usercontrols:GeoMapUC Height="550" Width="800"/>
             </Viewbox>
