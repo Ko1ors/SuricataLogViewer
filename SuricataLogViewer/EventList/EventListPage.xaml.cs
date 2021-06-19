@@ -31,7 +31,7 @@ namespace SuricataLogViewer.EventList
 
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
-            if (events == null) MessageBox.Show("Error");
+            if (events == null) { MessageBox.Show("Error"); return; }
             FilterData fd = createFilterData();
             List<SuricataEvent> filteredEvents = events.Where(u =>
             {
@@ -196,8 +196,7 @@ namespace SuricataLogViewer.EventList
             if ((bool)checkBoxAppProto4.IsChecked) listAppProto.Add(checkBoxAppProto4.Content.ToString());
             if ((bool)checkBoxAppProto5.IsChecked) listAppProto.Add(checkBoxAppProto5.Content.ToString());
             if ((bool)checkBoxAppProto6.IsChecked) listAppProto.Add(checkBoxAppProto6.Content.ToString());
-            FilterData filterData = new FilterData(timestamp, сomparisonStateTimestamp, flowId, сomparisonStateFlowId, listEventType, srcIp, destIp, listProto, listAppProto);
-            return filterData;
+            return new FilterData(timestamp, сomparisonStateTimestamp, flowId, сomparisonStateFlowId, listEventType, srcIp, destIp, listProto, listAppProto);
         }
 
         enum СomparisonState
