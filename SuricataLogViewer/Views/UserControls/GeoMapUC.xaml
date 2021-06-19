@@ -6,9 +6,7 @@
              xmlns:local="clr-namespace:SuricataLogViewer.Views.UserControls" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="800">
-    <Grid>
-        <Border BorderBrush="#204051" BorderThickness="2" CornerRadius="25">
-            <lvc:GeoMap HeatMap="{Binding Values}" Source="Maps/World.xml" Background="Transparent"/>
-        </Border>
-    </Grid>
+    <Border BorderBrush="#204051" BorderThickness="2" CornerRadius="25">
+        <lvc:GeoMap HeatMap="{Binding Values}" Source="Maps/World.xml" GradientStopCollection="{Binding GradientStopCollection}" Background="Transparent"/>
+    </Border>
 </UserControl>

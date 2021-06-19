@@ -1,8 +1,8 @@
 ﻿using SuricataLogViewer.Services;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SuricataLogViewer.Views.UserControls
 {
@@ -13,11 +13,27 @@ namespace SuricataLogViewer.Views.UserControls
     {
         public Dictionary<string, double> Values { get; set; }
 
+        public GradientStopCollection GradientStopCollection { get; set; }
+
         public GeoMapUC()
         {
             InitializeComponent();
 
             Values = new Dictionary<string, double>();
+            GradientStopCollection = new GradientStopCollection()
+            {
+                new GradientStop()
+                {
+                    Color = (Color)ColorConverter.ConvertFromString("#84A9AC"),
+                    Offset = 0d
+                },
+                new GradientStop()
+                {
+                    Color = (Color)ColorConverter.ConvertFromString("#204051"),
+                    Offset = 1d
+                }
+            };
+
             DataContext = this;
 
             UpdateMap();
@@ -41,7 +57,7 @@ namespace SuricataLogViewer.Views.UserControls
 
         public void AddToValues(string country)
         {
-            if(Values.ContainsKey(country))
+            if (Values.ContainsKey(country))
                 Values[country] += 1;
             else
                 Values[country] = 1;

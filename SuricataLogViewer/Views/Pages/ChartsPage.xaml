@@ -32,7 +32,9 @@
             <usercontrols:AppProtoPieChartUC Grid.Row="2" MinHeight="250"/>
             <usercontrols:ProtoPieChartUC Grid.Row="2" Grid.Column="1" MinHeight="250"/>
             <usercontrols:EventPieChartUC Grid.Row="2" Grid.Column="2" MinHeight="250"/>
-            <usercontrols:GeoMapUC Grid.Row="4" Grid.ColumnSpan="3" MinHeight="550"/>
+            <Viewbox Grid.Row="4" Grid.ColumnSpan="3" StretchDirection="Both" Stretch="Uniform">
+                <usercontrols:GeoMapUC Height="550" Width="800"/>
+            </Viewbox>
         </Grid>
     </ScrollViewer>
 </Page>
