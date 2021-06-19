@@ -26,7 +26,7 @@ namespace SuricataLogViewer.EventList
         private void ButtonShowAll_Click(object sender, RoutedEventArgs e)
         {
             events = suricataService.GetLog("https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json");
-            fillEventListView(events.OrderByDescending(u=>u.Timestamp).ToList());
+            fillEventListView(events.OrderByDescending(u => u.Timestamp).ToList());
         }
 
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
@@ -37,11 +37,15 @@ namespace SuricataLogViewer.EventList
             {
                 if (!fd.timestamp.Equals(fd.testTimestamp))
                 {
-                    if (!fd.timestamp.Equals(u.Timestamp)) return false;
+                    if (fd.сomparisonStateTimestamp == СomparisonState.Less && fd.timestamp > u.Timestamp) return false;
+                    if (fd.сomparisonStateTimestamp == СomparisonState.More && fd.timestamp < u.Timestamp) return false;
+                    if (fd.сomparisonStateTimestamp == СomparisonState.Empty && !fd.timestamp.Equals(u.Timestamp)) return false;
                 }
                 if (fd.flowId != null)
                 {
-                    if (!fd.flowId.Equals(u.FlowId.ToString())) return false;
+                    if (fd.сomparisonStateFlowId == СomparisonState.Less && Convert.ToUInt64(fd.flowId) > Convert.ToUInt64(u.FlowId.ToString())) return false;
+                    if (fd.сomparisonStateFlowId == СomparisonState.More && Convert.ToUInt64(fd.flowId) < Convert.ToUInt64(u.FlowId.ToString())) return false;
+                    if (fd.сomparisonStateFlowId == СomparisonState.Empty &&!fd.flowId.Equals(u.FlowId.ToString())) return false;
                 }
                 if (fd.listEventType.Count != 0)
                 {
@@ -70,57 +74,60 @@ namespace SuricataLogViewer.EventList
         }
         void EventUC_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            EventUC ev = (EventUC)e.Source;
+            EventUC ev = (EventUC)sender;
             SuricataEvent s = (SuricataEvent)ev.DataContext;
             MessageBox.Show(s.SrcIp.ToString());
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            customTimestamp.Text = "";
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            customSrcIp.Text = "";
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            customDestIp.Text = "";
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            customProto.Text = "";
-        }
-
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            customAppProto.Text = "";
-        }
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-            customFlowId.Text = "";
+            var btn = sender as Button;
+            StackPanel stackPanel = (StackPanel)btn.Parent;
+            clearFilters(stackPanel);
         }
 
         private void Button_ClearAllFilters(object sender, RoutedEventArgs e)
         {
-            void clearFilters(StackPanel stackPanel)
-            {
-                var textBox = stackPanel.Children.OfType<TextBox>().ToList();
-                foreach (var tb in textBox)
-                    tb.Text = "";
-
-                var checkBox = stackPanel.Children.OfType<CheckBox>().ToList();
-                foreach (var cb in checkBox)
-                    cb.IsChecked = false;
-            }
-
             string stackPanelName = "stackPanel";
-            for(int i = 1; i < 8; i++)
+            for (int i = 1; i < 10; i++)
             {
                 clearFilters((StackPanel)this.FindName(stackPanelName + i));
+            }
+        }
+
+        private void clearFilters(StackPanel stackPanel)
+        {
+            var textBox = stackPanel.Children.OfType<TextBox>().ToList();
+            foreach (var tb in textBox)
+                tb.Text = "";
+
+            var checkBox = stackPanel.Children.OfType<CheckBox>().ToList();
+            foreach (var cb in checkBox)
+                cb.IsChecked = false;
+
+            try
+            {
+                var nestedStackPanel = stackPanel.Children.OfType<StackPanel>().ToList()[0];
+                var listCheckBox = nestedStackPanel.Children.OfType<CheckBox>().ToList();
+                foreach (var check in listCheckBox)
+                {
+                    check.IsChecked = false;
+                }
+            }
+            catch { }
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox)
+            {
+                var cb = sender as CheckBox;
+                StackPanel stackPanel = (StackPanel)cb.Parent;
+                var list = stackPanel.Children.OfType<CheckBox>().ToList();
+                foreach (var check in list)
+                {
+                    if ((bool)cb.IsChecked && !cb.Equals(check)) check.IsChecked = false;
+                }
             }
         }
         private void fillEventListView(List<SuricataEvent> events)
@@ -148,7 +155,7 @@ namespace SuricataLogViewer.EventList
             try
             {
                 if (!customTimestamp.Text.Trim().Equals("")) timestamp = Convert.ToDateTime(customTimestamp.Text.Trim());
-                if (!customFlowId.Text.Trim().Equals("")) flowId =  customFlowId.Text.Trim();
+                if (!customFlowId.Text.Trim().Equals("")) flowId = customFlowId.Text.Trim();
                 if (!customSrcIp.Text.Trim().Equals("")) srcIp = customSrcIp.Text.Trim();
                 if (!customDestIp.Text.Trim().Equals("")) destIp = customDestIp.Text.Trim();
                 cProto = customProto.Text.Trim();
@@ -159,6 +166,14 @@ namespace SuricataLogViewer.EventList
                 MessageBox.Show("Invalid value of filter!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return null;
             }
+            СomparisonState сomparisonStateTimestamp = СomparisonState.Empty;
+            if ((bool)checkBoxTimestamp1.IsChecked) сomparisonStateTimestamp = СomparisonState.Less;
+            if ((bool)checkBoxTimestamp2.IsChecked) сomparisonStateTimestamp = СomparisonState.More;
+
+            СomparisonState сomparisonStateFlowId = СomparisonState.Empty;
+            if ((bool)checkBoxFlowId1.IsChecked) сomparisonStateFlowId = СomparisonState.Less;
+            if ((bool)checkBoxFlowId2.IsChecked) сomparisonStateFlowId = СomparisonState.More;
+
             List<string> listEventType = new List<string>();
             if ((bool)checkBoxEventType1.IsChecked) listEventType.Add(checkBoxEventType1.Content.ToString());
             if ((bool)checkBoxEventType2.IsChecked) listEventType.Add(checkBoxEventType2.Content.ToString());
@@ -181,38 +196,41 @@ namespace SuricataLogViewer.EventList
             if ((bool)checkBoxAppProto4.IsChecked) listAppProto.Add(checkBoxAppProto4.Content.ToString());
             if ((bool)checkBoxAppProto5.IsChecked) listAppProto.Add(checkBoxAppProto5.Content.ToString());
             if ((bool)checkBoxAppProto6.IsChecked) listAppProto.Add(checkBoxAppProto6.Content.ToString());
-            FilterData filterData = new FilterData(timestamp, flowId, listEventType, srcIp, destIp, listProto, listAppProto);
+            FilterData filterData = new FilterData(timestamp, сomparisonStateTimestamp, flowId, сomparisonStateFlowId, listEventType, srcIp, destIp, listProto, listAppProto);
             return filterData;
+        }
+
+        enum СomparisonState
+        {
+            Empty = 0,
+            Less,
+            More
         }
 
         private class FilterData
         {
             public DateTime timestamp;
+            public СomparisonState сomparisonStateTimestamp;
             public string flowId;
+            public СomparisonState сomparisonStateFlowId;
             public List<string> listEventType;
             public string SrcIp;
             public string DestIp;
             public List<string> listProto;
             public List<string> listAppProto;
             public DateTime testTimestamp = new DateTime();
-            public FilterData(DateTime timestamp, string flowId, List<string> listEventType, string srcIp, string destIp, List<string> listProto, List<string> listAppProto)
+            public FilterData(DateTime timestamp, СomparisonState сomparisonStateTimestamp, string flowId, СomparisonState сomparisonStateFlowId, 
+                List<string> listEventType, string srcIp, string destIp, List<string> listProto, List<string> listAppProto)
             {
                 this.timestamp = timestamp;
+                this.сomparisonStateTimestamp = сomparisonStateTimestamp;
                 this.flowId = flowId;
+                this.сomparisonStateFlowId = сomparisonStateFlowId;
                 this.listEventType = listEventType;
                 SrcIp = srcIp;
                 DestIp = destIp;
                 this.listProto = listProto;
                 this.listAppProto = listAppProto;
-            }
-
-            public bool checkForCoincidencetimestamp(SuricataEvent evnt)
-            {
-                if (!timestamp.Equals(testTimestamp))
-                {
-
-                }
-                return true;
             }
         }
     }
