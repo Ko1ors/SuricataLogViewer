@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:SuricataLogViewer.EventList"
              mc:Ignorable="d" 
              d:DesignHeight="47" d:DesignWidth="800" Cursor="Hand">
+    <UserControl.Resources>
+        <local:AppProtoConverter x:Key="myAppProtoConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="800"/>
@@ -37,9 +40,10 @@
                 <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
                 <TextBlock Text="{Binding Proto, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
 
-                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  AppProto" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding AppProto, FallbackValue=null, Converter={StaticResource myAppProtoConverter}}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
+                <!--<TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  AppProto" VerticalAlignment="Bottom"/>
                 <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
-                <TextBlock Text="{Binding AppProto, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding AppProto, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>-->
             </StackPanel>
         </GroupBox>
     </Grid>
