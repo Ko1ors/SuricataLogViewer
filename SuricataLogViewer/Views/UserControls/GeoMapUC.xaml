@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="800">
     <Border BorderBrush="#204051" BorderThickness="2" CornerRadius="25">
-        <lvc:GeoMap HeatMap="{Binding Values}" Source="Maps/World.xml" GradientStopCollection="{Binding GradientStopCollection}" Background="Transparent"/>
+        <lvc:GeoMap HeatMap="{Binding Values}" Source="Maps/World.xml" Hoverable="True" GradientStopCollection="{Binding GradientStopCollection}" Background="Transparent"/>
     </Border>
 </UserControl>
