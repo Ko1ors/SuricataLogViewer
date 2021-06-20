@@ -1,6 +1,7 @@
 ﻿using SuricataLogViewer.EventList;
 using SuricataLogViewer.Models;
 using SuricataLogViewer.Services;
+using SuricataLogViewer.Views.Pages;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -50,7 +51,7 @@ namespace SuricataLogViewer
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            PageFrame.Content = PageService.GetPageObject<Page>();
+            PageFrame.Content = PageService.GetPageObject<ChartsPage>();
         }
     }
 }

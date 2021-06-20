@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="SuricataLogViewer.Views.UserControls.AppProtoPieChartUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SuricataLogViewer.Views.UserControls" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:viewmodels="clr-namespace:SuricataLogViewer.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:PieChartViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="350">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Application Protocols" HorizontalAlignment="Center" FontSize="18" FontStyle="Italic" Foreground="#E4E3E3"/>
+
+        <lvc:PieChart Grid.Row="1" Margin="0,20,0,0" Series="{Binding SeriesCollection}" LegendLocation="Bottom" AnimationsSpeed="0:0:0.5" Hoverable="True" DataTooltip="{Binding DataTooltip}">
+            <lvc:PieChart.ChartLegend>
+                <lvc:DefaultLegend Foreground="#E4E3E3" Margin="0,20,0,0"/>
+            </lvc:PieChart.ChartLegend>
+        </lvc:PieChart>
+    </Grid>
+</UserControl>
