@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SuricataLogViewer.EventList"
+             xmlns:local="clr-namespace:SuricataLogViewer.EventList" xmlns:converters="clr-namespace:SuricataLogViewer.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="47" d:DesignWidth="800" Cursor="Hand">
     <UserControl.Resources>
-        <local:AppProtoConverter x:Key="myAppProtoConverter" />
+        <converters:ObjectToVisibilityConverter x:Key="converter" />
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,30 +20,23 @@
                     </Border>
                 </GroupBox.Header>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="FlowId" VerticalAlignment="Bottom"/>
-                <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
+                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="FlowId: " VerticalAlignment="Bottom"/>
                 <TextBlock Text="{Binding FlowId, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
 
-                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  EventType" VerticalAlignment="Bottom"/>
-                <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
+                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  EventType: " VerticalAlignment="Bottom"/>
                 <TextBlock Text="{Binding EventType, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
 
-                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  SrcIp" VerticalAlignment="Bottom"/>
-                <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
+                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  SrcIp: " VerticalAlignment="Bottom"/>
                 <TextBlock Text="{Binding SrcIp, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
 
-                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  DestIp" VerticalAlignment="Bottom"/>
-                <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
+                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  DestIp: " VerticalAlignment="Bottom"/>
                 <TextBlock Text="{Binding DestIp, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
 
-                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  Proto" VerticalAlignment="Bottom"/>
-                <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
+                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  Proto: " VerticalAlignment="Bottom"/>
                 <TextBlock Text="{Binding Proto, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
 
-                <TextBlock Text="{Binding AppProto, FallbackValue=null, Converter={StaticResource myAppProtoConverter}}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
-                <!--<TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  AppProto" VerticalAlignment="Bottom"/>
-                <TextBlock Text=": " FontFamily="Arial Black" FontSize="11" Foreground="#3B6978" VerticalAlignment="Bottom"/>
-                <TextBlock Text="{Binding AppProto, FallbackValue=null}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>-->
+                <TextBlock FontFamily="Arial Black" FontSize="12" Foreground="#3B6978" Text="  AppProto: " Visibility="{Binding AppProto, Converter={StaticResource converter}}" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding AppProto}" FontFamily="Arial Black" FontSize="12" Foreground="#8862E8" VerticalAlignment="Bottom"/>
             </StackPanel>
         </GroupBox>
     </Grid>

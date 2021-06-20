@@ -4,21 +4,27 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
-namespace SuricataLogViewer.EventList
+namespace SuricataLogViewer.Converters
 {
-    class AppProtoConverter : IValueConverter
+    public class ObjectToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null) return "";
-            return " AppProto: " + value.ToString();
+            if (value is null)
+                return Visibility.Collapsed;
+            return Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value;
+            if (Equals(value, Visibility.Visible))
+                return true;
+            if (Equals(value, Visibility.Collapsed))
+                return false;
+            return null;
         }
     }
 }
