@@ -120,6 +120,9 @@
                         </Grid>
                     </Border>
                     <Frame shell:Grid.Column="1" x:Name="PageFrame" NavigationUIVisibility="Hidden"/>
+                    <Grid>
+                        <Button Width="100" Height="30" Content="Перегляд елементу" Click="Button_Info" />
+                    </Grid>
                 </Grid>
             </Border>
         </Grid>
