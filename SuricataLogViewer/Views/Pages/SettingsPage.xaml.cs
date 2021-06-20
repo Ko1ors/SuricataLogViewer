@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuricataLogViewer.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace SuricataLogViewer.Views.Pages
         public SettingsPage()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AppSettings.Default.Save();
         }
     }
 }

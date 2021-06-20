@@ -4,26 +4,36 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SuricataLogViewer.Views.Pages"
+      xmlns:prop="clr-namespace:SuricataLogViewer.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SettingsPage">
-
+    <Page.Resources>
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="MinWidth" Value="90"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Background" Value="#3B6978"/>
+            <Setter Property="BorderBrush" Value="WhiteSmoke"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Page.Resources>
     <Grid Margin="5">
         <StackPanel>
             <GroupBox Header="Log Settings" FontSize="18" FontStyle="Italic" Foreground="#E4E3E3" BorderBrush="#204051" BorderThickness="2" Padding="10">
                 <StackPanel>
                     <TextBlock Text="Log path or URL"/>
-                    <TextBox/>
+                    <TextBox Text="{Binding Source={x:Static prop:AppSettings.Default}, Path=LogPath, Mode=TwoWay}" />
                 </StackPanel>
             </GroupBox>
 
-            <Separator Height="25" Opacity="0"/>
+            <Separator Height="10" Opacity="0"/>
 
-            <GroupBox Header="Charts Settings" FontSize="18" FontStyle="Italic" Foreground="#E4E3E3" BorderBrush="#204051" BorderThickness="2" Padding="10">
-                <StackPanel>
-                </StackPanel>
-            </GroupBox>
-            
+            <Button Content="Save" Style="{StaticResource ButtonStyle}" Click="Button_Click"/>
         </StackPanel>
     </Grid>
 </Page>
