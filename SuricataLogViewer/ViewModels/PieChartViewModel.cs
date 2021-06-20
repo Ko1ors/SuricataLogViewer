@@ -33,6 +33,10 @@ namespace SuricataLogViewer.ViewModels
         public void OnLoad()
         {
             var log = SuricataService.GetLog();
+
+            if (log is null)
+                return;
+
             List<IGrouping<string, Model.SuricataEvent>> logGrouped = null;
 
             switch (type)

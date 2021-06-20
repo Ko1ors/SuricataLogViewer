@@ -44,6 +44,10 @@ namespace SuricataLogViewer.Views.UserControls
             return Task.Run(() =>
             {
                 var log = SuricataService.GetLog();
+
+                if (log is null)
+                    return;
+
                 foreach (var suricataEvent in log)
                 {
                     IpService.GetIpInfo(suricataEvent);

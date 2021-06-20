@@ -19,6 +19,9 @@ namespace SuricataLogViewer.Views.UserControls
 
             var log = SuricataService.GetLog();
 
+            if (log is null)
+                return;
+
             var lTime = log.Min(e => e.Timestamp);
             var rTime = log.Max(e => e.Timestamp);
             var timeBetween = rTime - lTime;
