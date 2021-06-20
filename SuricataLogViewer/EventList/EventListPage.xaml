@@ -93,9 +93,9 @@
             <ColumnDefinition Width="35"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock x:Name="headerTextBlock" Margin="0 10 0 0" Grid.Column="1" Grid.ColumnSpan="3" Text="Events" FontFamily="{StaticResource FontFamily}" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource ForegroundBrush}"/>
+        <TextBlock Margin="0 10 0 0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding HeaderText, FallbackValue=Events}" FontFamily="{StaticResource FontFamily}" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource ForegroundBrush}"/>
 
-        <Expander Header="Filters. Click to expand the list of filters" Style="{StaticResource MainExpander}" Name="mainExpander">
+        <Expander Header="Filters. Click to expand the list of filters" Style="{StaticResource MainExpander}" IsExpanded="{Binding IsExpanded}">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="mainExpanderStackPanel">
                     <Expander Header="Timestamp" Style="{StaticResource NestedExpander}">
@@ -180,7 +180,7 @@
         <Button Grid.Row="1" Grid.Column="2" Style="{StaticResource ButtonStyle}" Click="ButtonSearch_Click"  Content="Filter"></Button>
         <Button Grid.Row="1" Grid.Column="3" Style="{StaticResource ButtonStyle}" Click="ButtonShowAll_Click" Content="Show All"></Button>
 
-        <ListView x:Name="eventListView" Grid.Row="3" Grid.ColumnSpan="5" Margin="5" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}" HorizontalAlignment="Center">
+        <ListView x:Name="eventListView" ItemsSource="{Binding EventUCCollection}" Grid.Row="3" Grid.ColumnSpan="5" Margin="5" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}" HorizontalAlignment="Center">
             <ListBox.ItemsPanel >
                 <ItemsPanelTemplate>
                     <WrapPanel/>

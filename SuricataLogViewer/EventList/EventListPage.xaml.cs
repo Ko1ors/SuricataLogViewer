@@ -2,9 +2,12 @@
 using SuricataLogViewer.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace SuricataLogViewer.EventList
@@ -17,60 +20,79 @@ namespace SuricataLogViewer.EventList
         private List<SuricataEvent> events;
         private SuricataService suricataService;
 
+        public ObservableCollection<EventUC> EventUCCollection { get; set; }
+
+        public bool IsExpanded { get; set; }
+
+        public string HeaderText { get; set; }
+
         public EventListPage()
         {
             InitializeComponent();
             suricataService = new SuricataService();
+            EventUCCollection = new ObservableCollection<EventUC>();
+            var lockObj = new object();
+            BindingOperations.EnableCollectionSynchronization(EventUCCollection, lockObj);
+            DataContext = this;
         }
 
         private void ButtonShowAll_Click(object sender, RoutedEventArgs e)
         {
-            events = suricataService.GetLog("https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json");
-            fillEventListView(events.OrderByDescending(u => u.Timestamp).ToList());
+            Task.Run(() =>
+            {
+                events = suricataService.GetLog("https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json");
+                fillEventListView(events.OrderByDescending(u => u.Timestamp).ToList());
+            });
         }
 
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
-            if (events == null) { MessageBox.Show("Error"); return; }
-            FilterData fd = createFilterData();
-            List<SuricataEvent> filteredEvents = events.Where(u =>
+            Task.Run(() =>
             {
-                if (!fd.timestamp.Equals(fd.testTimestamp))
+                if (events == null) { MessageBox.Show("Error"); return; }
+                FilterData fd = null;
+                Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    if (fd.сomparisonStateTimestamp == СomparisonState.Less && fd.timestamp > u.Timestamp) return false;
-                    if (fd.сomparisonStateTimestamp == СomparisonState.More && fd.timestamp < u.Timestamp) return false;
-                    if (fd.сomparisonStateTimestamp == СomparisonState.Empty && !fd.timestamp.Equals(u.Timestamp)) return false;
-                }
-                if (fd.flowId != null)
+                    fd = createFilterData();
+                })).Wait();
+                List<SuricataEvent> filteredEvents = events.Where(u =>
                 {
-                    if (fd.сomparisonStateFlowId == СomparisonState.Less && Convert.ToUInt64(fd.flowId) > Convert.ToUInt64(u.FlowId.ToString())) return false;
-                    if (fd.сomparisonStateFlowId == СomparisonState.More && Convert.ToUInt64(fd.flowId) < Convert.ToUInt64(u.FlowId.ToString())) return false;
-                    if (fd.сomparisonStateFlowId == СomparisonState.Empty &&!fd.flowId.Equals(u.FlowId.ToString())) return false;
-                }
-                if (fd.listEventType.Count != 0)
-                {
-                    if (!fd.listEventType.Contains(u.EventType)) return false;
-                }
-                if (fd.SrcIp != null)
-                {
-                    if (!fd.SrcIp.Equals(u.SrcIp)) return false;
-                }
-                if (fd.DestIp != null)
-                {
-                    if (!fd.DestIp.Equals(u.DestIp)) return false;
-                }
-                if (fd.listProto.Count != 0)
-                {
-                    if (!fd.listProto.Contains(u.Proto)) return false;
-                }
-                if (fd.listAppProto.Count != 0)
-                {
-                    if (!fd.listAppProto.Contains(u.AppProto)) return false;
-                }
-                return true;
-            }).ToList();
-            fillEventListView(filteredEvents);
-
+                    if (!fd.timestamp.Equals(fd.testTimestamp))
+                    {
+                        if (fd.сomparisonStateTimestamp == СomparisonState.Less && fd.timestamp > u.Timestamp) return false;
+                        if (fd.сomparisonStateTimestamp == СomparisonState.More && fd.timestamp < u.Timestamp) return false;
+                        if (fd.сomparisonStateTimestamp == СomparisonState.Empty && !fd.timestamp.Equals(u.Timestamp)) return false;
+                    }
+                    if (fd.flowId != null)
+                    {
+                        if (fd.сomparisonStateFlowId == СomparisonState.Less && Convert.ToUInt64(fd.flowId) > Convert.ToUInt64(u.FlowId.ToString())) return false;
+                        if (fd.сomparisonStateFlowId == СomparisonState.More && Convert.ToUInt64(fd.flowId) < Convert.ToUInt64(u.FlowId.ToString())) return false;
+                        if (fd.сomparisonStateFlowId == СomparisonState.Empty && !fd.flowId.Equals(u.FlowId.ToString())) return false;
+                    }
+                    if (fd.listEventType.Count != 0)
+                    {
+                        if (!fd.listEventType.Contains(u.EventType)) return false;
+                    }
+                    if (fd.SrcIp != null)
+                    {
+                        if (!fd.SrcIp.Equals(u.SrcIp)) return false;
+                    }
+                    if (fd.DestIp != null)
+                    {
+                        if (!fd.DestIp.Equals(u.DestIp)) return false;
+                    }
+                    if (fd.listProto.Count != 0)
+                    {
+                        if (!fd.listProto.Contains(u.Proto)) return false;
+                    }
+                    if (fd.listAppProto.Count != 0)
+                    {
+                        if (!fd.listAppProto.Contains(u.AppProto)) return false;
+                    }
+                    return true;
+                }).ToList();
+                fillEventListView(filteredEvents);
+            });
         }
         void EventUC_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -132,16 +154,19 @@ namespace SuricataLogViewer.EventList
         }
         private void fillEventListView(List<SuricataEvent> events)
         {
-            eventListView.Items.Clear();
+            EventUCCollection.Clear();
             if (events != null)
                 foreach (var evt in events)
                 {
-                    EventUC eventUC = new EventUC(evt);
-                    eventUC.MouseLeftButtonUp += new MouseButtonEventHandler(EventUC_MouseLeftButtonUp);
-                    eventListView.Items.Add(eventUC);
+                    Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        EventUC eventUC = new EventUC(evt);
+                        eventUC.MouseLeftButtonUp += new MouseButtonEventHandler(EventUC_MouseLeftButtonUp);
+                        EventUCCollection.Add(eventUC);
+                    }));
                 }
-            mainExpander.IsExpanded = false;
-            headerTextBlock.Text = "Events (Current count: " + events.Count + ")";
+            IsExpanded = false;
+            HeaderText = "Events (Current count: " + events.Count + ")";
         }
 
         private FilterData createFilterData()
@@ -218,7 +243,7 @@ namespace SuricataLogViewer.EventList
             public List<string> listProto;
             public List<string> listAppProto;
             public DateTime testTimestamp = new DateTime();
-            public FilterData(DateTime timestamp, СomparisonState сomparisonStateTimestamp, string flowId, СomparisonState сomparisonStateFlowId, 
+            public FilterData(DateTime timestamp, СomparisonState сomparisonStateTimestamp, string flowId, СomparisonState сomparisonStateFlowId,
                 List<string> listEventType, string srcIp, string destIp, List<string> listProto, List<string> listAppProto)
             {
                 this.timestamp = timestamp;
