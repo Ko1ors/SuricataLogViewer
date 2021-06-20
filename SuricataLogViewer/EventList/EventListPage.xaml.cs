@@ -18,7 +18,6 @@ namespace SuricataLogViewer.EventList
     public partial class EventListPage : Page
     {
         private List<SuricataEvent> events;
-        private SuricataService suricataService;
 
         public static readonly DependencyProperty IsExpandedProperty = DependencyProperty.Register("IsExpanded", typeof(bool), typeof(EventListPage));
         public static readonly DependencyProperty HeaderTextProperty = DependencyProperty.Register("HeaderText", typeof(string), typeof(EventListPage));
@@ -40,7 +39,6 @@ namespace SuricataLogViewer.EventList
         public EventListPage()
         {
             InitializeComponent();
-            suricataService = new SuricataService();
             EventUCCollection = new ObservableCollection<EventUC>();
             var lockObj = new object();
 
@@ -53,7 +51,7 @@ namespace SuricataLogViewer.EventList
         {
             Task.Run(() =>
             {
-                events = suricataService.GetLog("https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json");
+                events = SuricataService.GetLog("https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json");
                 fillEventListView(events.OrderByDescending(u => u.Timestamp).ToList());
             });
         }

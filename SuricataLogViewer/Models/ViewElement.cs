@@ -10,7 +10,7 @@ namespace SuricataLogViewer.Models
 {
     class ViewElement
     {
-        List<SuricataEvent> surList = new SuricataService().GetLog("https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json");
+        List<SuricataEvent> surList = SuricataService.GetLog("https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json");
 
         public String outputEl1(SuricataEvent surEvent)
         {
@@ -123,7 +123,7 @@ namespace SuricataLogViewer.Models
 
         public String outputEl2(SuricataEvent surEvent)
         {
-            String result = (surEvent.Timestamp.HasValue ? surEvent.Timestamp.ToString() : "empty") + "\n";
+            String result = surEvent.Timestamp.ToString() + "\n";
             result += (surEvent.FlowId ?? "empty") + "\n";
             result += (surEvent.PcapCnt.HasValue ? surEvent.PcapCnt.ToString() : "empty") + "\n";
             result += (surEvent.EventType ?? "empty") + "\n";
