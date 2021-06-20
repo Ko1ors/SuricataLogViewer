@@ -35,26 +35,15 @@
 
         <Border Grid.Row="1" BorderThickness="0,0,2,2" BorderBrush="{StaticResource WindowsBrush1}" Background="{StaticResource BackgroundBrush}" shell:Grid.RowSpan="2" >
             <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
-
-
-
-
-                <Grid x:Name="notes" >
-                    <TextBlock  Margin ="10 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White" FontSize="14" FontWeight="Bold">
+                <StackPanel>
+                    <Grid HorizontalAlignment="Center" x:Name="notes"/>
+                    <TextBlock  Margin ="10 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White" FontSize="16" FontWeight="Bold">
                      <Hyperlink  Foreground="#FFF0DB0F" NavigateUri="https://suricata.readthedocs.io/en/latest/output/index.html" RequestNavigate = "Hyperlink_RequestNavigate"> Link </Hyperlink> 
                      to Suricata documentation site
                     </TextBlock>
-                </Grid>
-
-
-
-
-
+                </StackPanel>
             </ScrollViewer>
-
-
         </Border>
     </Grid>
-
 </Window>
 
