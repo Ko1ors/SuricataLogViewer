@@ -1,4 +1,5 @@
-﻿using SuricataLogViewer.Models;
+﻿using SuricataLogViewer.Model;
+using SuricataLogViewer.Models;
 using SuricataLogViewer.Services;
 using System.Diagnostics;
 using System.Windows;
@@ -16,10 +17,10 @@ namespace SuricataLogViewer
     {
         ViewElement element = new ViewElement();
 
-        public ViewEl()
+        public ViewEl(SuricataEvent suricataEvent)
         {
             InitializeComponent();
-            CreateATextBlock();
+            CreateATextBlock(suricataEvent);
         }
         private void ExitButton_Click1(object sender, RoutedEventArgs e)
         {
@@ -39,7 +40,7 @@ namespace SuricataLogViewer
 
         }
 
-        private void CreateATextBlock()
+        private void CreateATextBlock(SuricataEvent suricataEvent)
         {
             TextBlock txtBlock = new TextBlock();
             TextBlock txtBlock2 = new TextBlock();
@@ -55,8 +56,8 @@ namespace SuricataLogViewer
             txtBlock2.Foreground = Brushes.Yellow;
             txtBlock.FontWeight = FontWeights.Bold;
             txtBlock2.FontWeight = FontWeights.Bold;
-            txtBlock.Text = element.outputEl1(7);
-            txtBlock2.Text = element.outputEl2(7);
+            txtBlock.Text = element.outputEl1(suricataEvent);
+            txtBlock2.Text = element.outputEl2(suricataEvent);
             notes.Children.Add(txtBlock);
             notes.Children.Add(txtBlock2);
         }

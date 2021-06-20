@@ -111,8 +111,9 @@ namespace SuricataLogViewer.EventList
         void EventUC_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             EventUC ev = (EventUC)sender;
-            SuricataEvent s = (SuricataEvent)ev.DataContext;
-            MessageBox.Show(s.SrcIp.ToString());
+            SuricataEvent suricataEvent = (SuricataEvent)ev.DataContext;
+            ViewEl viewEl = new ViewEl(suricataEvent);
+            viewEl.Show();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

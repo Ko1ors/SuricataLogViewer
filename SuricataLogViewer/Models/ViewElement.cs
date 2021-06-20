@@ -12,9 +12,8 @@ namespace SuricataLogViewer.Models
     {
         List<SuricataEvent> surList = new SuricataService().GetLog("https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json");
 
-        public String outputEl1(int index)
+        public String outputEl1(SuricataEvent surEvent)
         {
-            SuricataEvent surEvent = surList[index];
             String result = "Time: \n";
             result += "Flow id: \n";
             result += "Pcap count: \n";
@@ -122,9 +121,8 @@ namespace SuricataLogViewer.Models
             return result;
         }
 
-        public String outputEl2(int index)
+        public String outputEl2(SuricataEvent surEvent)
         {
-            SuricataEvent surEvent = surList[index];
             String result = (surEvent.Timestamp.HasValue ? surEvent.Timestamp.ToString() : "empty") + "\n";
             result += (surEvent.FlowId ?? "empty") + "\n";
             result += (surEvent.PcapCnt.HasValue ? surEvent.PcapCnt.ToString() : "empty") + "\n";
