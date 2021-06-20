@@ -10,8 +10,6 @@ namespace SuricataLogViewer.Models
 {
     class ViewElement
     {
-        List<SuricataEvent> surList = SuricataService.GetLog("https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json");
-
         public String outputEl1(SuricataEvent surEvent)
         {
             String result = "Time: \n";

@@ -53,5 +53,10 @@ namespace SuricataLogViewer
         {
             PageFrame.Content = PageService.GetPageObject<ChartsPage>();
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            PageFrame.Content = PageService.GetPageObject<SettingsPage>();
+        }
     }
 }

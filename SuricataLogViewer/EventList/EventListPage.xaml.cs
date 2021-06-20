@@ -45,13 +45,13 @@ namespace SuricataLogViewer.EventList
             HeaderText = "Events";
             BindingOperations.EnableCollectionSynchronization(EventUCCollection, lockObj);
             DataContext = this;
+            events = SuricataService.GetLog();
         }
 
         private void ButtonShowAll_Click(object sender, RoutedEventArgs e)
         {
             Task.Run(() =>
-            {
-                events = SuricataService.GetLog("https://raw.githubusercontent.com/FrankHassanabad/suricata-sample-data/master/samples/wrccdc-2018/alerts-only.json");
+            { 
                 fillEventListView(events.OrderByDescending(u => u.Timestamp).ToList());
             });
         }
@@ -276,6 +276,11 @@ namespace SuricataLogViewer.EventList
                 this.listProto = listProto;
                 this.listAppProto = listAppProto;
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            events = SuricataService.GetLog();
         }
     }
 }
