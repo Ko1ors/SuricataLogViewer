@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuricataLogViewer.Views.Pages;
+using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
@@ -13,7 +14,8 @@ namespace SuricataLogViewer.Services
             if (!pagesDictionary.TryGetValue(typeof(T), out Page page))
             {
                 page = new T();
-                pagesDictionary.Add(typeof(T), page);
+                if(page is not ChartsPage)
+                    pagesDictionary.Add(typeof(T), page);
             }
             return page;
         }
