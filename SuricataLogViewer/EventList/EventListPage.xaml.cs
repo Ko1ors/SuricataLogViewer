@@ -197,7 +197,11 @@ namespace SuricataLogViewer.EventList
             try
             {
                 if (!customTimestamp.Text.Trim().Equals("")) timestamp = Convert.ToDateTime(customTimestamp.Text.Trim());
-                if (!customFlowId.Text.Trim().Equals("")) flowId = customFlowId.Text.Trim();
+                if (!customFlowId.Text.Trim().Equals(""))
+                {
+                    flowId = customFlowId.Text.Trim();
+                    Convert.ToUInt64(flowId);
+                }
                 if (!customSrcIp.Text.Trim().Equals("")) srcIp = customSrcIp.Text.Trim();
                 if (!customDestIp.Text.Trim().Equals("")) destIp = customDestIp.Text.Trim();
                 cProto = customProto.Text.Trim();
