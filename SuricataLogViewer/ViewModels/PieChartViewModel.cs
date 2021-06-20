@@ -1,5 +1,6 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
+using LiveCharts.Wpf.Charts.Base;
 using SuricataLogViewer.Models;
 using SuricataLogViewer.Services;
 using System;
@@ -18,12 +19,15 @@ namespace SuricataLogViewer.ViewModels
 
         public SeriesCollection SeriesCollection { get; set; }
 
+        public DefaultTooltip DataTooltip { get; set; }
 
         public PieChartViewModel(PieChartType type)
         {
             this.type = type;
             SeriesCollection = new SeriesCollection();
+            DataTooltip = new DefaultTooltip() { SelectionMode = TooltipSelectionMode.OnlySender };
             OnLoad();
+            
         }
 
         public void OnLoad()
@@ -51,7 +55,9 @@ namespace SuricataLogViewer.ViewModels
                     Title = group.Key,
                     Values = new ChartValues<int> { group.Count() },
                     DataLabels = true,
-                    LabelPoint = chartPoint => $"{chartPoint.Y} ({Math.Round(chartPoint.Participation * 100)}%)",
+                    LabelPoint = chartPoint => $"{chartPoint.Y}",
+                    FontSize=12,
+                    LabelPosition = PieLabelPosition.OutsideSlice,
                     Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString("#E4E3E3")
                 });
             } 
