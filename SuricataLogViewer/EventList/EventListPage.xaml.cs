@@ -50,7 +50,8 @@ namespace SuricataLogViewer.EventList
         private void ButtonShowAll_Click(object sender, RoutedEventArgs e)
         {
             Task.Run(() =>
-            { 
+            {
+                if (events == null) { MessageBox.Show("Empty data!", "Error", MessageBoxButton.OK, MessageBoxImage.Error); return; }
                 fillEventListView(events.OrderByDescending(u => u.Timestamp).ToList());
             });
         }
@@ -59,7 +60,7 @@ namespace SuricataLogViewer.EventList
         {
             Task.Run(() =>
             {
-                if (events == null) { MessageBox.Show("Error"); return; }
+                if (events == null) { MessageBox.Show("Empty data!", "Error", MessageBoxButton.OK, MessageBoxImage.Error); return; }
                 FilterData fd = null;
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
