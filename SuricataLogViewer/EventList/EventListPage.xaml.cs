@@ -68,6 +68,7 @@ namespace SuricataLogViewer.EventList
                 {
                     fd = createFilterData();
                 })).Wait();
+                if (fd == null) return;
                 List<SuricataEvent> filteredEvents = events.Where(u =>
                 {
                     if (!fd.timestamp.Equals(fd.testTimestamp))
