@@ -45,7 +45,6 @@ namespace SuricataLogViewer.EventList
             HeaderText = "Events";
             BindingOperations.EnableCollectionSynchronization(EventUCCollection, lockObj);
             DataContext = this;
-            events = SuricataService.GetLog();
         }
 
         private void ButtonShowAll_Click(object sender, RoutedEventArgs e)
