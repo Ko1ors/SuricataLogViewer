@@ -120,6 +120,7 @@
                         </Grid>
                     </Border>
                     <Frame shell:Grid.Column="1" x:Name="PageFrame" NavigationUIVisibility="Hidden"/>
+                    <Grid/>
                 </Grid>
             </Border>
         </Grid>
