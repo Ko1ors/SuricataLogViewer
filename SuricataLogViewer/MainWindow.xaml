@@ -53,6 +53,7 @@
 
         <local1:SideBarElement x:Key="listElement" ShortName="🗎" FullName=" 🗎 EVENT LIST "/>
         <local1:SideBarElement x:Key="chartsElement" ShortName="📊" FullName=" 📊 CHARTS "/>
+        <local1:SideBarElement x:Key="settingsElement" ShortName="⚙" FullName=" ⚙ SETTINGS "/>
 
     </Window.Resources>
     <Border BorderThickness="0">
@@ -113,6 +114,7 @@
 
                                         <Button DockPanel.Dock="Top" Style="{StaticResource SideBarButtonStyle}" DataContext="{StaticResource listElement}" Content="{Binding CurrentName}" Click="Button_Click_1"/>
                                         <Button DockPanel.Dock="Top" Style="{StaticResource SideBarButtonStyle}" DataContext="{StaticResource chartsElement}" Content="{Binding CurrentName}" Click="Button_Click_2"/>
+                                        <Button DockPanel.Dock="Top" Style="{StaticResource SideBarButtonStyle}" DataContext="{StaticResource settingsElement}" Content="{Binding CurrentName}" Click="Button_Click_3"/>
 
                                     </DockPanel>
                                 </ScrollViewer>
