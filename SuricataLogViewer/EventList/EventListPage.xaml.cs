@@ -20,11 +20,22 @@ namespace SuricataLogViewer.EventList
         private List<SuricataEvent> events;
         private SuricataService suricataService;
 
+        public static readonly DependencyProperty IsExpandedProperty = DependencyProperty.Register("IsExpanded", typeof(bool), typeof(EventListPage));
+        public static readonly DependencyProperty HeaderTextProperty = DependencyProperty.Register("HeaderText", typeof(string), typeof(EventListPage));
+
         public ObservableCollection<EventUC> EventUCCollection { get; set; }
 
-        public bool IsExpanded { get; set; }
+        public bool IsExpanded
+        {
+            get { return (bool)GetValue(IsExpandedProperty); }
+            set { SetValue(IsExpandedProperty, value); }
+        }
 
-        public string HeaderText { get; set; }
+        public string HeaderText
+        {
+            get { return (string)GetValue(HeaderTextProperty); }
+            set { SetValue(HeaderTextProperty, value); }
+        }
 
         public EventListPage()
         {
@@ -32,6 +43,8 @@ namespace SuricataLogViewer.EventList
             suricataService = new SuricataService();
             EventUCCollection = new ObservableCollection<EventUC>();
             var lockObj = new object();
+
+            HeaderText = "Events";
             BindingOperations.EnableCollectionSynchronization(EventUCCollection, lockObj);
             DataContext = this;
         }
@@ -165,8 +178,11 @@ namespace SuricataLogViewer.EventList
                         EventUCCollection.Add(eventUC);
                     }));
                 }
-            IsExpanded = false;
-            HeaderText = "Events (Current count: " + events.Count + ")";
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                IsExpanded = false;
+                HeaderText = "Events (Current count: " + events.Count + ")";
+            }));
         }
 
         private FilterData createFilterData()
